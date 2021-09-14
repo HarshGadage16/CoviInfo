@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CoviHelp | Real Time Covid and Vaccine Tracker" />
+  <meta name="description"
+    content="Get the latest Updates on COVID-19 in India, new cases, active cases everything you need to know and also availability of vaccines near you." />
+  <meta property="og:image" itemprop="image"
+    content="https://images.unsplash.com/photo-1584483766114-2cea6facdf57?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" />
+  <meta property="og:description"
+    content="Get the latest Updates on Covid19 in India, new cases, active cases everything you need to know." />
+  <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="preconnect" href="path/to/font-awesome/css/font-awesome.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" href="css/cardstyle.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://maps.mapmyindia.com/covid-places/showNearbyCovidPlacesOnMap.js"></script>
+
+  <title>CoviHelp</title>
+</head>
+
+<body>
+  <nav data-aos="fade-down">
+    <div class="navbar">
+      <div class="container">
+        <div class="page-title">
+          <h2><i class="fas fa-virus"></i> CoviHelp</h2>
+        </div>
+        <div class="search-box">
+          <div class="clock"><i class="far fa-clock"></i> <span id="time">-</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="background">
+
+    <!-- Experimenting -->
+
+    <div class="main-bg" data-aos="fade-up">
+      <div class="container full-height">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 text-center">
+            <div class="total-cases-2">
+              <h3 class="confirm">Confirmed</h3>
+              <div class="child">
+                <p id="new-confirm" class="fs-18 delta-confirmed size-delta">0</p>
+                <p class="confirm" id="total-cases">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6  text-center">
+            <div class="total-cases-2">
+              <h3 class="margin-bottom active">Active</h3>
+              <p class="active" id="active-cases">0</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6  text-center">
+            <div class="total-cases-2">
+              <h3 class="recovered">Recovered</h3>
+              <div class="child">
+                <p id="deltarec" class="fs-18 recovered size-delta">0</p>
+                <p class="recovered" id="recovered">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6  text-center">
+            <div class="total-cases-2">
+              <h3>Deceased</h3>
+              <div class="child">
+                <p id="delta-death" class="fs-18 size-delta">0</p>
+                <p id="death">0</p>
+              </div>
+            </div>
+          </div>
+          <p class="notice"><span id="date-time"></span></p>
+        </div>
+      </div>
+    </div>
+    <!-- Experimenting -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div data-aos="fade-up" data-aos-duration="500" class="card-rectangle">
+            <div class="rec-elements">
+              <p class="text-small">
+                &nbsp;<span id="deltavac"> 0 </span> vaccine doses
+                administered day before.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div data-aos="fade-up" data-aos-duration="500" class="card-rectangle">
+            <div class="rec-elements">
+              <p>
+                &nbsp;<span id="vaccine-dose"> 0 </span> vaccine doses
+                administered till now.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="headline">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div data-aos="fade-up" class="table-responsive">
+        <table>
+          <thead>
+            <tr class="tablerow">
+              <th class="fixedright">State/UT</th>
+              <th>Confirmed</th>
+              <th class="classwidth-active">Active</th>
+              <th class="classwidth-recovered">Recovered</th>
+              <th class="classwidth-population">Deceased</th>
+              <th class="classwidth-population-vaccine">Vaccinated With At Least One Dose</th>
+              <th class="classwidth-population-vaccine">Fully Vaccinated</th>
+              <th class="classwidth-population-vaccine">Vaccine Doses Administered</th>
+            </tr>
+          </thead>
+          <tbody id="tableid"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div data-aos="fade-up" class="row">
+      <div class="col-lg-12">
+        <div class="headline headmargin">
+          <h1 data-aos="fade-up">
+            Trends <i class="far fa-chart-bar"></i>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <!-- Chart -->
+
+    <div class="row">
+      <div id="cahrt1" data-aos="fade-up" class="col-lg-6 col-md-6">
+        <div class="mapcard conf death-new">
+          <div class="chart-elements">
+            <canvas data-aos="fade-up" class="mychart" id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div id="cahrt2" data-aos="fade-up" class="col-lg-6 col-md-6">
+        <div class="mapcard death-new">
+          <div class="chart-elements">
+            <canvas data-aos="fade-up" class="mychart" id="myChart2"></canvas>
+          </div>
+        </div>
+      </div>
+      <div id="cahrt3" data-aos="fade-up" class="col-lg-6 col-md-6">
+        <div class="mapcard death-new">
+          <div class="chart-elements">
+            <canvas data-aos="fade-up" class="mychart" id="myChart3"></canvas>
+          </div>
+        </div>
+      </div>
+      <div id="cahrt4" data-aos="fade-up" class="col-lg-6 col-md-6">
+        <div class="mapcard death-new">
+          <div class="chart-elements">
+            <canvas data-aos="fade-up" class="mychart" id="myChart4"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <div class="sqr-card" data-aos="fade-up">
+          <div class="sqr-ele">
+            <div class="elec-group">
+              <div class="first-title">
+                <h4 id="conf-avg">New Confirmed</h4>
+                <h6>7 Day Average</h6>
+              </div>
+              <div class="para">
+                <p id="avg-data">
+                  7 day average new Confirmed cases in India <br /><b><span id="avg">0</span></b>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="redborder" id="color-1"></div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="sqr-card" data-aos="fade-up">
+          <div class="sqr-ele">
+            <div class="elec-group">
+              <div class="first-title">
+                <h4 id="rec-avg">Daily Recovered</h4>
+                <h6>7 Day Average</h6>
+              </div>
+              <div class="para">
+                <p id="avg-data">
+                  7 day average daily Recovered cases in India
+                  <b><span id="recov">0</span></b>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="redborder" id="color-2"></div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="sqr-card" data-aos="fade-up">
+          <div class="sqr-ele">
+            <div class="elec-group">
+              <div class="first-title">
+                <h4 id="dea-avg">Daily Deceased</h4>
+                <h6>7 Day Average</h6>
+              </div>
+              <div class="para">
+                <p id="avg-data">
+                  7 day average daily Deceased cases in India <br /><b><span id="mort">0</span></b>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="redborder" id="color-3"></div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+  <section id="vaccinslot">
+    <div class="bg">
+      <div class="maindiv">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mainheading">
+              <h1>#GetVaccinated <i class="fas fa-syringe"></i></h1>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="heading">
+              <h2>Check Your Nearest Vaccination Center and Slots Availability</h2>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="vaccineslots">
+              <form action="">
+                <input type="text" placeholder="Enter Pincode" id="pin" name="pincode" required>
+                <br>
+                <input type="text" name="date" id="date">
+                <br>
+                <button id="btn" class="but" type="button" onclick="getstatus()">Check Availability</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-sm-12">
+            <div class="results">
+              <ul class="centernames" id="ulid">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section  style="background: black;" >
+    <div id="nearby-covid-places-mapmyindia"></div>
+    <script type="text/javascript">
+      loadNearbyCovidCentresMapmyIndiaDiv(document.getElementById("nearby-covid-places-mapmyindia"),{css:"mapmyindia.css"});
+  </script>
+  </section>
+
+
+  <footer>
+    <div class="footer-element">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+
+              Made by Harsh Gadage&nbsp;| APIs-
+              <a href="https://data.covid19india.org/" target="_blank">Covid19india.org</a> & <a
+                href="https://apisetu.gov.in/" target="_blank">apisetu.gov.in</a>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <div class="icons-set2">
+              <a href="https://www.linkedin.com/in/ayush-pratap-singh-6b8b74201/" target="_blank"><i
+                  class="fab fa-linkedin-in"></i></a>
+              <a href="https://github.com/ayushpratap344" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="https://use.fontawesome.com/ff15909ecd.js"></script>
+<script src="https://kit.fontawesome.com/340a598582.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".swiper-container", {
+    grabCursor: true,
+    direction: "horizontal",
+    autoplay: true,
+    autoplaySpeed: 5000,
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+  });
+</script>
+<script src="js/main.js" async></script>
+<script src="js/gridchart.js" async></script>
+<script src="js/chart.js" async></script>
+<script src="js/cowinapi.js" defer></script>
+<script src="js/current_time.js"></script>
+
+</html>
