@@ -3,13 +3,10 @@ function getstatus()
     var date = document.querySelector('#date').value;
     var pincode = document.querySelector("#pin").value;
        async function getcowinapidata(a,b){
-        // const url ='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode='+a+'&date='+b;
-        // https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=110001&date=31-03-2021
         const url ='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='+a+'&date='+b;
         const jsonurl = await fetch(url);
         const getdata = await jsonurl.json();
         const size = Object.keys(getdata.centers).length;
-        // console.log(getdata);
         const cardul = document.getElementById('ulid');
         var text = "Sorry, No Vaccination center is available for booking.";
         if(size!=0)

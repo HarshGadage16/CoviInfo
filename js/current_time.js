@@ -2,12 +2,8 @@ function currentTime(){
   var  date  =  new Date();
   var hour  = date.getHours();
   var min = date.getMinutes();
-  // hour = updateTime(hour);
-  // min = updateTime(min);
   var time = document.getElementById('time');
-  var am = 'am'
-  // var pm = 'pm'
-  // hour = 10
+  var am = 'am';
   if(hour>=12)
   {
     if(hour==12)

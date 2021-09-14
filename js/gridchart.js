@@ -1,7 +1,6 @@
 async function getcovidapiInf(){
 
     const jsondata2 = await fetch('https://data.covid19india.org/data.json');
-    // const jsondata2 = await fetch('https://api.rootnet.in');
     const jsdata2 = await jsondata2.json();
     const dataforchart = jsdata2.statewise;
     const jsondata3 = await fetch('https://data.covid19india.org/v4/min/data.min.json');
@@ -33,11 +32,9 @@ async function getcovidapiInf(){
 
     const newrecovered= document.querySelector('#deltarec');
     newrecovered.innerText = `+${dataj[dataforchart[i].statecode].delta.recovered.toLocaleString('en-IN')}`;
-    // newrecovered.innerText = `+${dataforchart[i].deltarecovered.replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}`;
     
     const newdeath= document.querySelector('#delta-death');
     newdeath.innerText = `+${dataj[dataforchart[i].statecode].delta.deceased.toLocaleString('en-IN')}`;
-    // newdeath.innerText =`+${dataforchart[i].deltadeaths.replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}`;
 
       }
     

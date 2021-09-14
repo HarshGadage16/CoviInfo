@@ -108,13 +108,11 @@ async function getcoviddata(){
                 label: 'Daily Confirmed',
                 data: yaxis,
                 backgroundColor: [
-                    // 'rgba(255, 99, 132, 0.2)',
                     'rgba(214, 49, 82, 0.2)',
                  
                    
                 ],
                 borderColor: [
-                    // 'rgba(255, 99, 132, 1)',
                     'rgba(214, 49, 82, 1)',
                 
                 ],
@@ -171,15 +169,10 @@ async function getcoviddata(){
                 label: 'Daily Recovered',
                 data: dailyrecoverd,
                 backgroundColor: [
-                    // 'rgba(255, 99, 132, 0.2)',
-                    // 'rgba(114, 194, 23, 0.2)'
-
                     'rgba(40, 167, 69, 0.2)'
                    
                 ],
                 borderColor: [
-                    // 'rgba(114, 194, 23, 1)',
-
                     'rgba(40, 167, 69, 1)',
                 ],
                 borderWidth: 1
